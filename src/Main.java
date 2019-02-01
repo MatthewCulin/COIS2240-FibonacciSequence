@@ -26,12 +26,12 @@ public class Main
         n = scan.nextInt();
 
         // Arrays to store all values of the Fibonacci Sequence
-        int [] fibArrayRec = new int[n+1];
-        int [] fibArrayIte = new int[n+1];
+        //int [] fibArrayRec = new int[n + 1];
+        int [] fibArrayIte = new int[n + 1];
 
         // Timing of the recursive function
         long startTimeRec = System.nanoTime();
-        fiboSeriesRec(n, fibArrayRec);
+        fiboSeriesRec(n);
         long endTimeRec = System.nanoTime();
 
         //Determines the total runtime and outputs it
@@ -45,30 +45,38 @@ public class Main
 
         //Determines the total runtime and outputs it
         long timeElapsedIte = endTimeIte - startTimeIte;
-        System.out.println("Elapsed time in nanoseconds is: " + timeElapsedIte);
+        System.out.println("\nElapsed time in nanoseconds is: " + timeElapsedIte);
     }// END OF MAIN
 
     // This is the recursive method which will call itself to determine the values of the Fibonacci Sequence
-    public static int fiboSeriesRec(int n, int fibArrayRec[])
+    public static int fiboSeriesRec(int n)
     {
-        if (n<2)
-            return n;
+        if (n == 0)
+            return 0;
 
-        return (n-1)+(n-2);
+        else if (n == 1)
+            return 1;
+
+        return fiboSeriesRec(n-1)+fiboSeriesRec(n-2);
     }// END OF FIBOSERIESREC
 
     // This is the iterative function which will run a for loop internally to determine the values of the
     // Fibonacci Sequence
     public static int fiboSeriesIte(int n, int fibArrayIte[])
     {
-        for(int i = 1; i <= n; i++)
+        for(int i = 0; i <= n; i++)
         {
             // Will set the first 2 values of the array to 1 as the Fibonacci Sequence begins with 1, 1,...
-            if (i < 3)
+            if (i == 0)
+                fibArrayIte[i] = 0;
+
+            else if (i == 1)
                 fibArrayIte[i] = 1;
+
             else
                 fibArrayIte[i] = fibArrayIte[i-2] + fibArrayIte[i-1];
         }
+
         return fibArrayIte[n];
     }// END OF FIBOSERIESITE
 }//END OF MAIN CLASS
